@@ -1,8 +1,20 @@
+type TeamEntity = {
+  name: string;
+  description?: string;
+  members: MemberEntity[];
+};
+
+type MemberEntity = {
+  name: string;
+  fullName?: string;
+};
+
 type ProjectPhaseEntity = {
   name: string;
   description: string;
   startDate: string;
   endDate: string;
+  members?: MemberEntity[];
 };
 
 type ProjectEntity = {
@@ -13,6 +25,5 @@ type ProjectEntity = {
   startDate: string;
   endDate: string;
   categories: string[];
-  users: string[];
   phases: ProjectPhaseEntity[];
 };
