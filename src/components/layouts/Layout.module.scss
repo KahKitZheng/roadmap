@@ -1,0 +1,33 @@
+.layout {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  height: 100%;
+  width: 100%;
+
+  .sidebar {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-right: 1px solid #ddd;
+
+    h1 {
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      background-color: black;
+      color: white;
+      margin: 0;
+      border-radius: 8px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+  }
+
+  .main {
+    padding: 16px;
+  }
+}
