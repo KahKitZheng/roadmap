@@ -1,0 +1,48 @@
+.avatarGroup {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.projectGridList {
+  display: grid;
+  gap: 24px;
+
+  .projectContainer {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 200px 1fr;
+    align-items: baseline;
+
+    .projectHeader {
+      display: grid;
+      gap: 4px;
+
+      .projectTitle {
+        font-size: 18px;
+      }
+
+      .projectStatus {
+        border-radius: 999px;
+        background-color: #daffd8;
+        border: 2px solid #9ae6bd;
+        color: #1a8b4e;
+        padding: 0 8px;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 10px;
+        width: fit-content;
+      }
+    }
+
+    .projectPhases {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: 150px 1fr;
+
+      .projectPhase {
+        font-weight: 600;
+      }
+    }
+  }
+}

@@ -1,100 +1,43 @@
+import Avatar from "../components/avatar/Avatar";
 import Layout from "../components/layouts";
 import * as data from "../data";
+import styles from "./RoadmapPage.module.scss";
 
 type RoadmapPageProps = {};
 
 export default function RoadmapPage(props: Readonly<RoadmapPageProps>) {
-  const teamMembers = data.team.members.map((member) => {
+  function getMemberInitials(member: MemberEntity) {
     return member.fullName
       ? member.fullName
           .split(" ")
           .map((name) => name[0].toUpperCase())
           .join("")
       : member.name[0].toUpperCase();
-  });
+  }
 
   return (
     <Layout>
       <header>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            marginBottom: "1rem",
-          }}
-        >
-          {teamMembers.map((member, index) => (
-            <p
-              key={index}
-              style={{
-                borderRadius: "999px",
-                backgroundColor: "#f0f0f0",
-                border: "2px solid #ddd",
-                height: "1.5rem",
-                width: "1.5rem",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "0.25rem",
-                fontWeight: "600",
-                textTransform: "uppercase",
-                position: "relative",
-                zIndex: teamMembers.length - index,
-                marginLeft: index === 0 ? 0 : "-6px",
-              }}
-            >
-              {member}
-            </p>
+        <div className={styles.avatarGroup}>
+          {data.team.members.map((member, index) => (
+            <Avatar key={index} zIndex={data.team.members.length - index}>
+              {getMemberInitials(member)}
+            </Avatar>
           ))}
         </div>
-        <div></div>
       </header>
-      <div style={{ display: "grid", gap: "1.5rem" }}>
+
+      <div className={styles.projectGridList}>
         {data.projects.map((project) => (
-          <div
-            key={project.name}
-            style={{
-              display: "grid",
-              gap: "1rem",
-              gridTemplateColumns: "200px 1fr",
-              alignItems: "baseline",
-            }}
-          >
-            <header
-              style={{
-                display: "grid",
-                flexDirection: "column",
-                gap: "4px",
-              }}
-            >
-              <h2>{project.name}</h2>
-              <small
-                style={{
-                  borderRadius: "999px",
-                  backgroundColor: "#daffd8",
-                  border: "2px solid #9ae6bd",
-                  color: "#1a8b4e",
-                  padding: "0 8px",
-                  fontWeight: "600",
-                  textTransform: "uppercase",
-                  fontSize: "10px",
-                  width: "fit-content",
-                }}
-              >
-                {project.status}
-              </small>
+          <div key={project.name} className={styles.projectContainer}>
+            <header className={styles.projectHeader}>
+              <h2 className={styles.projectTitle}>{project.name}</h2>
+              <small className={styles.projectStatus}>{project.status}</small>
             </header>
             <div>
               {project.phases.map((phase) => (
-                <div
-                  key={phase.name}
-                  style={{
-                    display: "grid",
-                    gap: "1rem",
-                    gridTemplateColumns: "150px 1fr",
-                  }}
-                >
-                  <h4 style={{ fontWeight: 600 }}>{phase.name}</h4>
+                <div key={phase.name} className={styles.projectPhases}>
+                  <h4 className={styles.projectPhase}>{phase.name}</h4>
                   <p>
                     {phase.members?.map((member) => member.name).join(", ")}
                   </p>
