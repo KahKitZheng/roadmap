@@ -1,3 +1,5 @@
+@use "../styles/Mixins.scss" as *;
+
 .avatarGroup {
   display: flex;
   align-items: center;
@@ -6,20 +8,24 @@
 
 .projectGridList {
   display: grid;
-  gap: 24px;
+  gap: 12px;
 
   .projectContainer {
-    display: grid;
-    gap: 16px;
-    grid-template-columns: 200px 1fr;
-    align-items: baseline;
+    // display: grid;
+    // gap: 16px 24px;
+    // grid-template-columns: 200px 1fr auto;
+    // align-items: baseline;
 
     .projectHeader {
-      display: grid;
-      gap: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
 
       .projectTitle {
         font-size: 18px;
+        font-weight: 700;
+        color: oklch(60.9% 0.126 221.723);
+        // width: 200px;
       }
 
       .projectStatus {
@@ -32,17 +38,77 @@
         text-transform: uppercase;
         font-size: 10px;
         width: fit-content;
+        margin-top: 2px;
       }
+    }
+
+    .projectDetails {
+      display: grid;
+      gap: 16px 24px;
+      grid-template-columns: minmax(400px, auto) 1fr;
+      position: relative;
+
+      &::before {
+        content: "";
+        display: block;
+        width: 1px;
+        height: calc(100% - 20px);
+        background-color: #ddd;
+        position: absolute;
+        left: 4px;
+        top: 0;
+      }
+    }
+
+    .phasesList {
+      min-width: 250px;
+      margin-left: 24px;
+    }
+
+    .timelineContainer {
+      overflow-x: auto;
+      @include scrollBarTransparent;
     }
 
     .projectPhases {
       display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 16px;
-      grid-template-columns: 150px 1fr;
+      height: 24px;
+      position: relative;
+
+      &::before {
+        content: "";
+        display: block;
+        width: 12px;
+        height: 1px;
+        background-color: #ddd;
+        position: absolute;
+        left: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
 
       .projectPhase {
         font-weight: 600;
       }
+
+      .projectPhase,
+      .projectPhaseMembers {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .projectPhaseTimeline {
+      display: grid;
+      grid-template-columns: repeat(52, 32px);
+      gap: 1px;
+      min-width: calc(
+        52 * 32px + 51 * 1px
+      ); // 52 cells * 32px width + 51 gaps * 1px
+
+      @include scrollBarTransparent;
     }
   }
 }

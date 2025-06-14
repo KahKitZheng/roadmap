@@ -1,0 +1,28 @@
+@mixin scrollBarTransparent {
+  /* Works on Firefox */
+  @supports (-moz-appearance: none) {
+    & {
+      scrollbar-width: thin;
+      scrollbar-color: transparent;
+    }
+  }
+
+  /* Works on Chrome && Edge */
+  @media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+      padding-right: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: transparent;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+  }
+}
